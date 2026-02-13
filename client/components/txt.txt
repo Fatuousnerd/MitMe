@@ -1,0 +1,28 @@
+// useEffect(() => {
+  //   const ws = new WebSocket(`ws://localhost:3535/ws/${roomId}`);
+
+  //   ws.onmessage = (event) => {
+  //     const data = JSON.parse(event.data);
+
+  //     switch (data.type) {
+  //       case "joined":
+  //         setSelfId(data.userId);
+  //         (data.users as PeerUser[])
+  //           .filter((user) => user.id !== data.userId)
+  //           .forEach((user) => addUser(user));
+  //         toast.success("Meeting has started");
+  //         break;
+  //       case "user-joined":
+  //         if (data.id !== selfId) {
+  //           addUser({ id: data.id, role: data.role });
+  //           toast.success("A new user has joined");
+  //         }
+  //         break;
+  //       case "user-left":
+  //         removeUser(data.id);
+  //         toast.info("Someone has left the meeting");
+  //         break;
+  //     }
+  //   };
+  //   return()=>ws.close()
+  // }, [roomId]);
