@@ -36,7 +36,7 @@ We plan to add `SFU` (Selective Forwarding Unit) support in future versions for 
 - Modern browser with WebRTC support(Any current browser will support this)
 
 ## INSTALLATION
-``bash
+```bash
 npm i @fatuousnerd/mitme
 ```
 
