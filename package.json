@@ -1,7 +1,9 @@
 {
-  "name": "mitme",
+  "name": "@fatuousnerd/mitme",
   "version": "1.0.0",
-  "private": true,
+  "description": "Video Conferencing tool that uses WebRTC through PeerJS",
+  "private": false,
+  "license": "MIT",
   "lib": [
     "DOM",
     "ESNext"
@@ -16,12 +18,17 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fatuousnerd/MitMe.git"
+  },
   "devDependencies": {
     "@types/bun": "^1.3.14",
     "tsup": "^8.5.1"
@@ -32,5 +39,18 @@
   "dependencies": {
     "peerjs": "^1.5.5",
     "zod": "^4.4.3"
+  },
+  "keywords": [
+    "sdk",
+    "api",
+    "typescript",
+    "webrtc",
+    "video-conferencing",
+    "video"
+  ],
+  "author": "Fatuous Nerd",
+  "homepage": "https://github.com/Fatuousnerd/MitMe",
+  "bugs": {
+    "url": "https://github.com/Fatuousnerd/MitMe/issues"
   }
 }

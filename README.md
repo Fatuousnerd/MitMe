@@ -8,8 +8,6 @@ Open Source WebRTC SDK
 
 > IMPORTANT: This SDK is currently in BETA stage. It may contain bugs, have limited features, and is not yet production ready. We are actively working on improvements and new features.
 
-> Also, the SDK has not yet been published to any registry, but we're working on that. Therefore, the only way to install it on any project is to clone the repo, then use your package manager to manually pack it, then link it using a `symlink`.
-
 > Currently, there's no documentation nor a playground. These will be provided in the next update tho.
 
 ## DESCRIPTION
@@ -36,6 +34,11 @@ We plan to add `SFU` (Selective Forwarding Unit) support in future versions for 
 
 ## REQUIREMENTS
 - Modern browser with WebRTC support(Any current browser will support this)
+
+## INSTALLATION
+``bash
+npm i @fatuousnerd/mitme
+```
 
 ## CURRENT LIMITATIONS (BETA)
 - Mesh networking only (limited to small groups)
