@@ -1,68 +1,65 @@
-# MitMe
+# MITME - VIDEO CONFERENCE SDK
+Open Source WebRTC SDK
 
-> Self-hosted, open-source video conferencing platform. OSS alternative to Zoom.
-
----
-
-## 🚀 What is this?
-
-- Self-hosted video conferencing
-- Host your own meetings, on your own terms.
-
----
-
-## ✨ Features
-
-- Works locally
-- Self-hostable
-- Supports anonimity
-
----
-
-## 🏗 Tech Stack
-
-![TypeScript](https://img.shields.io/badge/-TypeScript-000?&logo=TypeScript)
-![Next.js](https://img.shields.io/badge/-Next.js-000?&logo=Next.js)
+![Zod](https://img.shields.io/badge/-Zod-000?&logo=Zod)
 ![Bun](https://img.shields.io/badge/-Bun-000?&logo=Bun)
-![Hono](https://img.shields.io/badge/-Hono-000?&logo=Hono)
-![TailwindCss](https://img.shields.io/badge/-TailwindCss-000?&logo=TailwindCss)
+![Typescript](https://img.shields.io/badge/-Typescript-000?&logo=Typescript)
+![PeerJS](https://img.shields.io/badge/-PeerJS-000?&logo=PeerJS)
 
----
+> IMPORTANT: This SDK is currently in BETA stage. It may contain bugs, have limited features, and is not yet production ready. We are actively working on improvements and new features.
 
-## 📦 Installation
+> Also, the SDK has not yet been published to any registry, but we're working on that. Therefore, the only way to install it on any project is to clone the repo, then use your package manager to manually pack it, then link it using a `symlink`.
 
-### 1. Clone the repo
+> Currently, there's no documentation nor a playground. These will be provided in the next update tho.
 
-```bash
-git clone https://github.com/Fatuousnerd/MitMe.git
-cd MitMe
-```
+## DESCRIPTION
+MitMe is a lightweight, open source video conferencing SDK for web applications. It uses WebRTC technology through PeerJS to enable real-time video and audio calls directly in the browser.
 
-### 2. Install client dependencies
-> You will need to have Bun or at least Node installed in your machine.
+The SDK runs entirely client-side on user devices. It is designed for easy integration into websites and web apps that need video chat functionality.
 
-``` bash
-cd client
-bun i
-```
-#### or
-```
-npm i
-```
 
-### 3. Install server dependencies
+## CONNECTION TOPOLOGY WARNING
+This version uses a Mesh connection model. Every participant connects directly to all other participants. 
+This works well for small groups (2-6 people maximum) but can cause high bandwidth usage, CPU overload, and connection issues with larger groups. 
 
-``` bash
-cd ../server
-bun i
-```
+We plan to add `SFU` (Selective Forwarding Unit) support in future versions for better scalability.
 
-### 4. Run the project locally
+## KEY FEATURES
+- Simple API for video conferencing
+- Peer-to-peer connections via PeerJS and WebRTC
+- Real-time video and audio streaming
+- Screen sharing support
+- Text chat during calls
+- Customizable UI components
+- Works on desktop and mobile browsers
+- No server media processing (pure P2P)
 
-``` bash
-bun dev
-```
+## REQUIREMENTS
+- Modern browser with WebRTC support(Any current browser will support this)
 
-Client runs at: `http://localhost:3000`
+## CURRENT LIMITATIONS (BETA)
+- Mesh networking only (limited to small groups)
+- No recording feature yet
+- Limited error handling and reconnection logic
+- No advanced moderation tools
+- No native mobile app support (browser only)
 
-Server runs at: `http://localhost:3535`
+We are working on fixing these issues and adding more features.
+
+## PRIVACY
+All media streams are peer-to-peer. No video or audio data passes through our servers. Only signaling goes through PeerJS.
+
+## SUPPORT THIS PROJECT
+This is a free and open source project. Contributions are highly welcome.
+
+Work is ongoing to improve stability and add SFU support.
+
+## LICENSE
+This project is licensed under the MIT License. You are free to use and modify it.
+
+## GITHUB REPOSITORY
+https://github.com/Fatuousnerd/MitMe
+
+## THANK YOU
+Thank you for trying MitMe. 
+We appreciate your feedback as we continue to improve it.

@@ -1,0 +1,36 @@
+{
+  "name": "mitme",
+  "version": "1.0.0",
+  "private": true,
+  "lib": [
+    "DOM",
+    "ESNext"
+  ],
+  "scripts": {
+    "publish": "",
+    "build": "tsup"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/bun": "^1.3.14",
+    "tsup": "^8.5.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "peerjs": "^1.5.5",
+    "zod": "^4.4.3"
+  }
+}
