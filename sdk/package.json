@@ -1,6 +1,6 @@
 {
   "name": "@fatuousnerd/mitme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Video Conferencing tool that uses WebRTC through PeerJS",
   "private": false,
   "license": "MIT",
@@ -9,7 +9,6 @@
     "ESNext"
   ],
   "scripts": {
-    "publish": "",
     "build": "tsup"
   },
   "main": "./dist/index.js",
@@ -34,7 +33,7 @@
     "tsup": "^8.5.1"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "peerjs": "^1.5.5",

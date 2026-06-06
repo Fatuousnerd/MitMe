@@ -82,6 +82,13 @@ export class Signaling {
     });
   }
 
+  sendChatMessage(text: string) {
+    this.send({
+      type: "chat-message",
+      text,
+    });
+  }
+
   private send(data: any) {
     if (this.ws && this.ws.readyState === WebSocket.OPEN) {
       this.ws.send(JSON.stringify(data));

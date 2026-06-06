@@ -88,12 +88,24 @@ export class MitMe {
       console.log(
         `[MitMe Client] PeerJS open with ID: ${peerId}. Connecting to signaling server...`,
       );
-      const wsUrl = this.config.signalingUrl || "ws://localhost:4004";
+      const wsUrl = this.config.signalingUrl;
       this.signaling = new Signaling(wsUrl);
 
       this.signaling.on("connected", () => {
         this.signaling?.join();
       });
+
+      this.signaling.on(
+        "chat-message",
+        (data: { peerId: string; sender: string; text: string }) => {
+          this.emit(
+            "chat-message-received",
+            data.peerId,
+            data.sender,
+            data.text,
+          );
+        },
+      );
 
       this.signaling.on(
         "room-details",
@@ -308,6 +320,10 @@ export class MitMe {
     } catch (err) {
       console.error("Failed to recover camera stream:", err);
     }
+  }
+
+  sendChatMessage(text: string) {
+    this.signaling?.sendChatMessage(text);
   }
 
   async leave() {

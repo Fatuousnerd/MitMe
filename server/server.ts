@@ -4,7 +4,7 @@ import type { UserConnection, WSData } from "./Types";
 const rooms = new Map<string, Map<string, UserConnection>>();
 
 const server = serve<WSData>({
-  port: 4004,
+  port: Number(process.env.PORT) || 4005,
   fetch(req, server) {
     const url = new URL(req.url);
     const roomId = url.searchParams.get("roomId");
@@ -26,7 +26,7 @@ const server = serve<WSData>({
     open() {
       console.log("🟢 Signaling client connected");
     },
-    
+
     message(ws, message) {
       try {
         const data = JSON.parse(message as string);
@@ -82,6 +82,27 @@ const server = serve<WSData>({
                       peerId,
                       audio: data.audio,
                       video: data.video,
+                    }),
+                  );
+                }
+              }
+            }
+            break;
+          }
+
+          case "chat-message": {
+            if (!ws.data) return;
+            const { roomId, peerId, name } = ws.data;
+            const room = rooms.get(roomId);
+            if (room) {
+              for (const [pId, info] of room.entries()) {
+                if (pId !== peerId) {
+                  info.ws.send(
+                    JSON.stringify({
+                      type: "chat-message",
+                      peerId,
+                      sender: name,
+                      text: data.text,
                     }),
                   );
                 }

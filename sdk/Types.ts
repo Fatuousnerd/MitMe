@@ -1,4 +1,3 @@
-import type { ServerWebSocket } from "bun";
 import z from "zod";
 
 export const UserSchema = z.object({
@@ -27,7 +26,7 @@ export const MitMeConfigSchema = z.object({
   roomId: z.string(),
   peerId: z.string(),
   constraints: MediaConstraintsSchema,
-  signalingUrl: z.string().optional(),
+  signalingUrl: z.url(),
 });
 export type MitMeConfig = z.infer<typeof MitMeConfigSchema>;
 
@@ -49,13 +48,3 @@ export type PeerConfig = z.infer<typeof PeerConfigSchema>;
 
 export type EventCallback = (...args: any[]) => void;
 
-export interface UserConnection {
-  ws: ServerWebSocket<WSData>;
-  name: string;
-}
-
-export interface WSData {
-  roomId: string;
-  peerId: string;
-  name: string;
-}
