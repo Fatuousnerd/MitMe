@@ -1,4 +1,4 @@
-import { MediaConstraintsSchema, type MediaConstraints } from "./Types";
+import { MediaConstraintsSchema, type MediaConstraints } from "../Types";
 
 export class Media {
   localStream: MediaStream | null = null;
@@ -7,9 +7,9 @@ export class Media {
   constructor() {}
 
   /**
-   * 
+   *
    * This functions gets the local stream of the device, i.e., video, audio.
-   * @param constraints Media Constraints object. 
+   * @param constraints Media Constraints object.
    * @returns Local Stream Promise.
    */
   async getLocalStream(constraints: MediaConstraints) {
@@ -23,14 +23,17 @@ export class Media {
   }
 
   /**
-   * 
+   *
    * This functions gets the local stream of the device's screen, i.e., what's being displayed in the user's screen.
-   * @param constraints Media Constraints object. 
+   * @param constraints Media Constraints object.
    * @returns Screen Stream Promise.
    */
   async getScreenStream(constraints: MediaConstraints) {
     const validated = MediaConstraintsSchema.parse(constraints);
-    if (validated.screen && (validated.screen.video || validated.screen.audio)) {
+    if (
+      validated.screen &&
+      (validated.screen.video || validated.screen.audio)
+    ) {
       this.screenStream = await navigator.mediaDevices.getDisplayMedia({
         video: validated.screen.video,
         audio: validated.screen.audio,

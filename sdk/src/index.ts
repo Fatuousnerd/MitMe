@@ -2,7 +2,7 @@ import { Media } from "./media";
 import { RoomManager } from "./rooms";
 import { Peers } from "./peers";
 import { Signaling } from "./signaling";
-import type { EventCallback, MitMeConfig, RoomConfig, User } from "./Types";
+import type { EventCallback, MitMeConfig, RoomConfig, User } from "../Types";
 
 export class MitMe {
   localStream: Promise<MediaStream>;

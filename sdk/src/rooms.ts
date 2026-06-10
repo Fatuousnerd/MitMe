@@ -1,4 +1,4 @@
-import type { Room, RoomConfig, User } from "./Types";
+import type { Room, RoomConfig, User } from "../Types";
 
 export const rooms = new Map<string, Room>();
 
@@ -44,7 +44,12 @@ export class RoomManager {
     }
   }
 
-  updateUserMedia(roomId: string, userId: string, audio: boolean, video: boolean) {
+  updateUserMedia(
+    roomId: string,
+    userId: string,
+    audio: boolean,
+    video: boolean,
+  ) {
     const room = rooms.get(roomId);
     if (room) {
       const user = room.users.find((u) => u.id === userId);

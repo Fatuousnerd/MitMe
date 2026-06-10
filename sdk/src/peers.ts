@@ -1,5 +1,5 @@
 import Peer, { type MediaConnection } from "peerjs";
-import type { PeerConfig } from "./Types";
+import type { PeerConfig } from "../Types";
 
 type EventCallback = (...args: any[]) => void;
 
