@@ -4,6 +4,9 @@ import { Peers } from "./peers";
 import { Signaling } from "./signaling";
 import type { EventCallback, MitMeConfig, RoomConfig, User } from "../Types";
 
+/**
+ * Entry point for the MitMe SDK. Initializes and exposes all other methods.
+ */
 export class MitMe {
   localStream: Promise<MediaStream>;
   media = new Media();
@@ -14,6 +17,10 @@ export class MitMe {
   private events: Record<string, EventCallback[]> = {};
   private resolvedLocalStream: MediaStream | null = null;
 
+  /**
+   * Initializes the SDK, gets the local stream, handles room & peer logic, and connects to the signaling server.
+   * @param config User details, Room ID, Peer ID, media constraints, signaling URL
+   */
   constructor(private config: MitMeConfig) {
     this.localStream = this.media.getLocalStream(config.constraints);
 
@@ -34,9 +41,7 @@ export class MitMe {
   }
 
   on(event: string, callback: EventCallback) {
-    if (!this.events[event]) {
-      this.events[event] = [];
-    }
+    if (!this.events[event]) this.events[event] = [];
     this.events[event].push(callback);
   }
 
@@ -52,6 +57,10 @@ export class MitMe {
     }
   }
 
+  /**
+   * Handles all the initial logic, from joining/creating rooms, managing peer connections, then listens for events.
+   * @param payload User details, Room ID, Peer ID
+   */
   async init(payload: RoomConfig) {
     await this.rooms.join(payload);
     this.peers = new Peers({ peerId: payload.peerId });
@@ -195,6 +204,10 @@ export class MitMe {
     });
   }
 
+  /**
+   * Toggles the audio in `MediaConstraints`.
+   * @returns Boolean
+   */
   toggleAudio(): boolean {
     if (this.resolvedLocalStream) {
       const track = this.resolvedLocalStream.getAudioTracks()[0];
@@ -208,6 +221,10 @@ export class MitMe {
     return false;
   }
 
+  /**
+   * Toggles the video in `MediaConstraints`.
+   * @returns Boolean
+   */
   toggleVideo(): boolean {
     if (this.resolvedLocalStream) {
       const track = this.resolvedLocalStream.getVideoTracks()[0];
@@ -221,6 +238,10 @@ export class MitMe {
     return false;
   }
 
+  /**
+   * Checks whether the `Local Stream` has audio tracks in it. Basically whether the `mic` is on or not.
+   * @returns Boolean
+   */
   isAudioEnabled(): boolean {
     if (this.resolvedLocalStream) {
       const track = this.resolvedLocalStream.getAudioTracks()[0];
@@ -229,6 +250,10 @@ export class MitMe {
     return false;
   }
 
+  /**
+   * Checks whether the `Local Stream` has video tracks in it. Basically whether the `cam` is on or not.
+   * @returns Boolean
+   */
   isVideoEnabled(): boolean {
     if (this.resolvedLocalStream) {
       const track = this.resolvedLocalStream.getVideoTracks()[0];
@@ -237,6 +262,10 @@ export class MitMe {
     return false;
   }
 
+  /**
+   * Gets the users `Screen Stream`
+   * @returns boolean
+   */
   async startScreenShare() {
     try {
       const screenStream = await this.media.getScreenStream({
@@ -284,6 +313,9 @@ export class MitMe {
     return false;
   }
 
+  /**
+   * Stops screen-sharing and switches to `Local Stream` with the current `MediaConstraints`.
+   */
   async stopScreenShare() {
     try {
       const camStream = await this.media.getLocalStream(
@@ -322,10 +354,17 @@ export class MitMe {
     }
   }
 
+  /**
+   * Method to send text message in a room.
+   * @param text Text message to be sent. `string`
+   */
   sendChatMessage(text: string) {
     this.signaling?.sendChatMessage(text);
   }
 
+  /**
+   * Cleans up everything by disconnecting the WeSocket, destroys all peer connections, stops all media collection and cleans up the rooms.
+   */
   async leave() {
     this.signaling?.disconnect();
 
@@ -334,9 +373,7 @@ export class MitMe {
     this.media.stopAll();
     this.resolvedLocalStream = null;
 
-    if (this.rooms.currentRoomId) {
-      this.rooms.leave(this.rooms.currentRoomId);
-    }
+    if (this.rooms.currentRoomId) this.rooms.leave(this.rooms.currentRoomId);
 
     this.emit("left");
   }

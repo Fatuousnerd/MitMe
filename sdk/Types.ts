@@ -47,4 +47,3 @@ export const PeerConfigSchema = z.object({ peerId: z.string() });
 export type PeerConfig = z.infer<typeof PeerConfigSchema>;
 
 export type EventCallback = (...args: any[]) => void;
-

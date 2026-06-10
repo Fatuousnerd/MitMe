@@ -3,11 +3,18 @@ import type { PeerConfig } from "../Types";
 
 type EventCallback = (...args: any[]) => void;
 
+/**
+ * Automatically handles all the peer & WebRTC logic. This is the back-bone of the SDK.
+ */
 export class Peers {
   peer: Peer;
   private calls = new Map<string, MediaConnection>();
   private events: Record<string, EventCallback[]> = {};
 
+  /**
+   * Initializes a new Peer, with the specified Peer ID, and listens for peer-related events.
+   * @param config Peer ID to be used.
+   */
   constructor(config: PeerConfig) {
     this.peer = new Peer(config.peerId, {
       debug: 1,
@@ -39,13 +46,22 @@ export class Peers {
     });
   }
 
+  /**
+   * Listens for peer events.
+   * @param event String name for the event.
+   * @param callback Callback for the said event
+   */
   on(event: string, callback: EventCallback) {
-    if (!this.events[event]) {
-      this.events[event] = [];
-    }
+    if (!this.events[event]) this.events[event] = [];
     this.events[event].push(callback);
   }
 
+  /**
+   * 
+   * @param event 
+   * @param args 
+   * @returns 
+   */
   emit(event: string, ...args: any[]) {
     if (!this.events[event]) return;
     for (const cb of this.events[event]) {
@@ -53,6 +69,12 @@ export class Peers {
     }
   }
 
+  /**
+   * Gracefully calls the remote peer specified by the `id` and returns a `MediaConnection`.
+   * @param peerId ID of the peer
+   * @param stream MediaStream used in the call
+   * @returns MediaConnection
+   */
   call(peerId: string, stream: MediaStream): MediaConnection {
     this.closeConnection(peerId);
 
@@ -70,6 +92,10 @@ export class Peers {
     return call;
   }
 
+  /**
+   * Closes the peer connection and cleans up. Different from the `destroy` method, as this only closes the specified peer.
+   * @param peerId ID of the peer
+   */
   closeConnection(peerId: string) {
     const call = this.calls.get(peerId);
     if (call) {
@@ -78,6 +104,9 @@ export class Peers {
     }
   }
 
+  /**
+   * Destroys & cleans up all peer connections gracefully.
+   */
   destroy() {
     for (const call of this.calls.values()) {
       call.close();

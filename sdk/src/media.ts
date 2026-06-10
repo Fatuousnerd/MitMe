@@ -1,5 +1,8 @@
 import { MediaConstraintsSchema, type MediaConstraints } from "../Types";
 
+/**
+ * Handles all media related logic.
+ */
 export class Media {
   localStream: MediaStream | null = null;
   screenStream: MediaStream | null = null;

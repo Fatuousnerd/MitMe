@@ -1,8 +1,14 @@
 import { serve } from "bun";
 import type { UserConnection, WSData } from "./Types";
 
+/**
+ * A `Map` that keeps records of all the currently available rooms and their details.
+ */
 const rooms = new Map<string, Map<string, UserConnection>>();
 
+/**
+ * Starts up & manages the `Signaling Server` using `Bun's Server`.
+ */
 const server = serve<WSData>({
   port: Number(process.env.PORT) || 4005,
   fetch(req, server) {
