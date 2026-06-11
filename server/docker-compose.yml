@@ -1,0 +1,10 @@
+services:
+  mitme-server:
+    build: .
+    container_name: mitme-server
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    ports:
+      - "4005:4005"
+    restart: unless-stopped
