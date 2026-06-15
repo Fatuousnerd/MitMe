@@ -1,5 +1,5 @@
 {
-  "name": "@fatuousnerd/mitme-server",
+  "name": "@buboterrae/mitme-server",
   "private": true,
   "scripts": {
     "serve": "bun run server.ts"

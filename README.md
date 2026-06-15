@@ -2,13 +2,13 @@
 
 Open Source WebRTC SDK
 
-![npm Version](https://shieldcn.dev/npm/@fatuousnerd/mitme.svg?variant=secondary&size=xs)
-![npm License](https://shieldcn.dev/npm/license/@fatuousnerd/mitme.svg?variant=ghost&size=xs)
-![npm Total Downloads](https://shieldcn.dev/npm/dt/@fatuousnerd/mitme.svg?variant=outline&size=xs)
+![npm Version](https://shieldcn.dev/npm/@buboterrae/mitme.svg?variant=secondary&size=xs)
+![npm License](https://shieldcn.dev/npm/license/@buboterrae/mitme.svg?variant=ghost&size=xs)
+![npm Total Downloads](https://shieldcn.dev/npm/dt/@buboterrae/mitme.svg?variant=outline&size=xs)
 
-<!-- ![Minzipped Size](https://shieldcn.dev/bundlephobia/minzip/@fatuousnerd/mitme.svg?variant=secondary&size=xs)
-![Minified Size](https://shieldcn.dev/bundlephobia/min/@fatuousnerd/mitme.svg?variant=outline&size=xs)
-![Tree Shaking](https://shieldcn.dev/bundlephobia/tree-shaking/@fatuousnerd/mitme.svg?variant=secondary&size=xs) -->
+<!-- ![Minzipped Size](https://shieldcn.dev/bundlephobia/minzip/@buboterrae/mitme.svg?variant=secondary&size=xs)
+![Minified Size](https://shieldcn.dev/bundlephobia/min/@buboterrae/mitme.svg?variant=outline&size=xs)
+![Tree Shaking](https://shieldcn.dev/bundlephobia/tree-shaking/@buboterrae/mitme.svg?variant=secondary&size=xs) -->
 
 ![Beta](https://shieldcn.dev/badge/status-beta-blue.svg?variant=outline&size=xs)
 ![PRs Welcome](https://shieldcn.dev/badge/PRs-welcome-brightgreen.svg?variant=secondary&size=xs)
@@ -56,7 +56,7 @@ We plan to add `SFU` (Selective Forwarding Unit) support in future versions for 
 ## INSTALLATION
 
 ```bash
-npm i @fatuousnerd/mitme
+npm i @buboterrae/mitme
 ```
 
 ## CURRENT LIMITATIONS (BETA)
@@ -85,7 +85,7 @@ This project is licensed under the MIT License. You are free to use and modify i
 
 ## GITHUB REPOSITORY
 
-https://github.com/Fatuousnerd/MitMe
+https://github.com/BuboTerrae/MitMe
 
 ## THANK YOU
 
